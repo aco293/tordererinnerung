@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Reveal from "./ui/Reveal";
-import Section from "./ui/Section";
+import Reveal from "../ui/Reveal";
+import Section from "../ui/Section";
+import Card from "../ui/Card";
+import Button from "../ui/Button";
+import { cta } from "@/lib/content";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -13,6 +16,7 @@ export default function NewsletterSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // TODO: Vor Veröffentlichung mit echter Newsletter-Anbindung ersetzen.
     // v1: keine Backend-Anbindung – nur Validierung und sanftes Feedback.
     if (!EMAIL_PATTERN.test(email.trim())) {
       setError("Bitte gib eine gültige E-Mail-Adresse ein.");
@@ -34,7 +38,7 @@ export default function NewsletterSection() {
       />
 
       <div className="container-x relative">
-        <div className="glass mx-auto max-w-2xl rounded-3xl px-7 py-12 text-center sm:px-14 sm:py-16">
+        <Card className="mx-auto max-w-2xl rounded-3xl px-7 py-12 text-center sm:px-14 sm:py-16">
           <Reveal>
             <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 text-xl text-gold">
               ✶
@@ -86,9 +90,9 @@ export default function NewsletterSection() {
                       error ? "border-red-400/60" : "border-gold/20"
                     }`}
                   />
-                  <button type="submit" className="btn-primary w-full shrink-0 sm:w-auto">
-                    Verbinden
-                  </button>
+                  <Button type="submit" className="w-full shrink-0 sm:w-auto">
+                    {cta.newsletterSubmit}
+                  </Button>
                 </div>
                 {error && (
                   <p className="mt-3 text-sm text-red-300/80" role="alert">
@@ -105,7 +109,7 @@ export default function NewsletterSection() {
               uns geschützt.
             </p>
           </Reveal>
-        </div>
+        </Card>
       </div>
     </Section>
   );

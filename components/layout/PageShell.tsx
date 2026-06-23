@@ -1,8 +1,10 @@
-import Link from "next/link";
 import Header from "./Header";
 import Footer from "./Footer";
-import Starfield from "./Starfield";
-import Reveal from "./ui/Reveal";
+import Starfield from "../ui/Starfield";
+import Button from "../ui/Button";
+import SectionLabel from "../ui/SectionLabel";
+import Reveal from "../ui/Reveal";
+import { cta } from "@/lib/content";
 
 type PageShellProps = {
   eyebrow?: string;
@@ -17,7 +19,7 @@ type PageShellProps = {
 /**
  * Einheitliches Layout für alle Unterseiten:
  * gleicher Header/Footer, ruhiger Hero, „Zurück zum Tor“.
- * Hält die Platzhalterseiten DRY und im selben Premium-Stil.
+ * Hält die (Platzhalter-)Seiten DRY und im selben Premium-Stil.
  */
 export default function PageShell({
   eyebrow,
@@ -50,7 +52,7 @@ export default function PageShell({
             </Reveal>
             {eyebrow && (
               <Reveal delay={100}>
-                <span className="eyebrow mt-6 block">{eyebrow}</span>
+                <SectionLabel className="mt-6 block">{eyebrow}</SectionLabel>
               </Reveal>
             )}
             <Reveal delay={150}>
@@ -66,9 +68,9 @@ export default function PageShell({
               </Reveal>
             )}
             <Reveal delay={350}>
-              <Link href="/" className="btn-ghost mt-9">
-                <span aria-hidden>←</span> Zurück zum Tor
-              </Link>
+              <Button href="/" variant="ghost" className="mt-9">
+                <span aria-hidden>←</span> {cta.backToGate}
+              </Button>
             </Reveal>
           </div>
         </section>

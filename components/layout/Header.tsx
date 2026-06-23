@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { navLinks } from "@/lib/content";
-import SectionLink from "./ui/SectionLink";
+import SectionLink from "../ui/SectionLink";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);

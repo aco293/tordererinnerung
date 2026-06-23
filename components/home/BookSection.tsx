@@ -1,6 +1,8 @@
-import Link from "next/link";
-import Reveal from "./ui/Reveal";
-import Section from "./ui/Section";
+import Reveal from "../ui/Reveal";
+import Section from "../ui/Section";
+import Button from "../ui/Button";
+import SectionLabel from "../ui/SectionLabel";
+import { cta } from "@/lib/content";
 
 export default function BookSection() {
   return (
@@ -60,7 +62,7 @@ export default function BookSection() {
           {/* Text */}
           <div className="order-1 lg:order-2">
             <Reveal>
-              <span className="eyebrow">Das Buch</span>
+              <SectionLabel>Das Buch</SectionLabel>
             </Reveal>
             <Reveal delay={100}>
               <h2 className="mt-5 text-balance text-4xl leading-tight sm:text-5xl">
@@ -83,12 +85,12 @@ export default function BookSection() {
             </Reveal>
             <Reveal delay={400}>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                <Link href="/buch" className="btn-primary w-full sm:w-auto">
-                  Mehr über das Buch erfahren
-                </Link>
-                <a href="#newsletter" className="btn-ghost w-full sm:w-auto">
-                  Leseprobe vormerken
-                </a>
+                <Button href="/buch" className="w-full sm:w-auto">
+                  {cta.bookMore}
+                </Button>
+                <Button href="#newsletter" variant="ghost" className="w-full sm:w-auto">
+                  {cta.bookSample}
+                </Button>
               </div>
             </Reveal>
           </div>

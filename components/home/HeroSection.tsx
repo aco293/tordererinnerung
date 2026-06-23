@@ -1,6 +1,9 @@
-import Starfield from "./Starfield";
+import Starfield from "../ui/Starfield";
+import Button from "../ui/Button";
+import SectionLabel from "../ui/SectionLabel";
+import { cta } from "@/lib/content";
 
-export default function Hero() {
+export default function HeroSection() {
   return (
     <section
       id="top"
@@ -31,9 +34,9 @@ export default function Hero() {
       />
 
       <div className="container-x relative z-10 flex flex-col items-center text-center">
-        <span className="eyebrow mb-6 animate-fade-in">
+        <SectionLabel className="mb-6 animate-fade-in">
           Willkommen am Tor
-        </span>
+        </SectionLabel>
 
         <h1 className="animate-fade-in-up text-balance text-[2.75rem] leading-[1.05] text-glow sm:text-6xl md:text-7xl lg:text-8xl">
           Tor<span className="text-gold">Der</span>Erinnerung
@@ -61,12 +64,12 @@ export default function Hero() {
           className="mt-10 flex w-full max-w-sm flex-col items-center gap-3.5 animate-fade-in-up sm:max-w-none sm:flex-row sm:justify-center sm:gap-4"
           style={{ animationDelay: "450ms" }}
         >
-          <a href="#intro" className="btn-primary w-full sm:w-auto">
-            Das Tor betreten
-          </a>
-          <a href="#erkenntnisraeume" className="btn-ghost w-full sm:w-auto">
-            Erkenntnisräume entdecken
-          </a>
+          <Button href="#intro" className="w-full sm:w-auto">
+            {cta.enterGate}
+          </Button>
+          <Button href="#erkenntnisraeume" variant="ghost" className="w-full sm:w-auto">
+            {cta.discoverRealms}
+          </Button>
         </div>
       </div>
 

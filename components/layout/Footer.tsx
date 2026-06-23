@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { socialLinks } from "@/lib/content";
+import { discoverLinks, legalLinks, siteConfig } from "@/lib/content";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-gold/10 pb-12 pt-10 sm:pt-12">
       <div className="container-x">
-        <div className="flex flex-col items-center gap-10 md:flex-row md:items-start md:justify-between">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           {/* Marke */}
           <div className="max-w-xs text-center md:text-left">
             <Link href="/" className="inline-flex items-center gap-2.5">
@@ -25,24 +25,29 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:gap-16">
+          <div className="grid grid-cols-2 gap-8 text-center sm:grid-cols-3 sm:gap-12 md:text-left">
             <nav className="flex flex-col items-center gap-3 sm:items-start">
-              <span className="eyebrow mb-1">Seiten</span>
-              <Link href="/impressum" className="footer-link">
-                Impressum
-              </Link>
-              <Link href="/datenschutz" className="footer-link">
-                Datenschutz
-              </Link>
-              <Link href="/kontakt" className="footer-link">
-                Kontakt
-              </Link>
+              <span className="eyebrow mb-1">Entdecken</span>
+              {discoverLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="footer-link">
+                  {link.label}
+                </Link>
+              ))}
             </nav>
 
             <nav className="flex flex-col items-center gap-3 sm:items-start">
+              <span className="eyebrow mb-1">Seiten</span>
+              {legalLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="footer-link">
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <nav className="col-span-2 flex flex-col items-center gap-3 sm:col-span-1 sm:items-start">
               <span className="eyebrow mb-1">Folgen</span>
               <a
-                href={socialLinks.tiktok}
+                href={siteConfig.social.tiktok}
                 className="footer-link"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -50,7 +55,7 @@ export default function Footer() {
                 TikTok
               </a>
               <a
-                href={socialLinks.youtube}
+                href={siteConfig.social.youtube}
                 className="footer-link"
                 target="_blank"
                 rel="noopener noreferrer"

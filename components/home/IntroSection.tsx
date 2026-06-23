@@ -1,5 +1,6 @@
-import Reveal from "./ui/Reveal";
-import Section from "./ui/Section";
+import Reveal from "../ui/Reveal";
+import Section from "../ui/Section";
+import SectionLabel from "../ui/SectionLabel";
 
 export default function IntroSection() {
   return (
@@ -7,7 +8,7 @@ export default function IntroSection() {
       <div className="container-x">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <span className="eyebrow">Ein Ort zwischen Stille und Erkenntnis</span>
+            <SectionLabel>Ein Ort zwischen Stille und Erkenntnis</SectionLabel>
           </Reveal>
 
           <Reveal delay={120}>

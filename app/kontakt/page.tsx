@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import PageShell from "@/components/PageShell";
+import PageShell from "@/components/layout/PageShell";
 import Section from "@/components/ui/Section";
+import Card from "@/components/ui/Card";
+import SectionLabel from "@/components/ui/SectionLabel";
 import Reveal from "@/components/ui/Reveal";
-import { socialLinks } from "@/lib/content";
+import { siteConfig } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Kontakt – TorDerErinnerung",
+  title: "Kontakt",
   description: "Nimm Verbindung mit TorDerErinnerung auf.",
 };
 
@@ -21,21 +23,22 @@ export default function KontaktPage() {
         <div className="container-x">
           <div className="mx-auto max-w-xl">
             <Reveal>
-              <div className="glass rounded-2xl p-8 text-center">
-                <span className="eyebrow">E-Mail</span>
+              {/* TODO: Vor Veröffentlichung mit echter Kontakt-E-Mail und echten Kanälen ersetzen. */}
+              <Card className="rounded-2xl p-8 text-center">
+                <SectionLabel>E-Mail</SectionLabel>
                 <a
-                  href={`mailto:${socialLinks.email}`}
+                  href={`mailto:${siteConfig.contactEmail}`}
                   className="mt-4 block font-heading text-2xl text-gold transition-colors hover:text-soft-white"
                 >
-                  {socialLinks.email}
+                  {siteConfig.contactEmail}
                 </a>
 
                 <div className="mx-auto my-8 h-px w-16 bg-gold-line opacity-60" />
 
-                <span className="eyebrow">Folgen</span>
+                <SectionLabel>Folgen</SectionLabel>
                 <div className="mt-4 flex justify-center gap-4">
                   <a
-                    href={socialLinks.tiktok}
+                    href={siteConfig.social.tiktok}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-ghost"
@@ -43,7 +46,7 @@ export default function KontaktPage() {
                     TikTok
                   </a>
                   <a
-                    href={socialLinks.youtube}
+                    href={siteConfig.social.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-ghost"
@@ -51,7 +54,7 @@ export default function KontaktPage() {
                     YouTube
                   </a>
                 </div>
-              </div>
+              </Card>
             </Reveal>
           </div>
         </div>

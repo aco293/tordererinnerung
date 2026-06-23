@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import PageShell from "@/components/PageShell";
+import PageShell from "@/components/layout/PageShell";
 import Section from "@/components/ui/Section";
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
+import { cta } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "7 Schlüssel des Bewusstseins – TorDerErinnerung",
+  title: "7 Schlüssel des Bewusstseins",
   description:
     "Ein Buch für Menschen, die sich erinnern und bewusster leben möchten. Sieben Schlüssel, sieben Schwellen.",
 };
@@ -41,21 +43,23 @@ export default function BuchPage() {
             <Reveal delay={120}>
               <ul className="mt-10 grid gap-3">
                 {schluessel.map((s, i) => (
-                  <li
+                  <Card
+                    as="li"
                     key={s}
-                    className="glass flex items-center gap-4 rounded-xl px-5 py-4"
+                    className="flex items-center gap-4 rounded-xl px-5 py-4"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/30 text-sm text-gold">
                       {i + 1}
                     </span>
                     <span className="text-soft-white/90">{s}</span>
-                  </li>
+                  </Card>
                 ))}
               </ul>
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="glass mt-10 rounded-2xl p-7 text-center">
+              <Card className="mt-10 rounded-2xl p-7 text-center">
+                {/* TODO: Vor Veröffentlichung mit echtem Erscheinungstermin / Leseprobe ersetzen. */}
                 <p className="text-sm uppercase tracking-[0.25em] text-gold/80">
                   Erscheint bald
                 </p>
@@ -64,10 +68,10 @@ export default function BuchPage() {
                   stille Nachricht zu erhalten, sobald es so weit ist – und um
                   dir eine Leseprobe vorzumerken.
                 </p>
-                <Link href="/#newsletter" className="btn-primary mt-6">
-                  Leseprobe vormerken
-                </Link>
-              </div>
+                <Button href="/#newsletter" className="mt-6">
+                  {cta.bookSample}
+                </Button>
+              </Card>
             </Reveal>
           </div>
         </div>

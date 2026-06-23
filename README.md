@@ -54,11 +54,15 @@ One-Page-Startseite plus funktionale Platzhalterseiten:
 | Route                              | Inhalt                              |
 | ---------------------------------- | ----------------------------------- |
 | `/`                                | Startseite (alle Sektionen)         |
+| `/erkenntnisraeume`                | Übersicht aller Räume               |
+| `/erkenntnisraeume/[slug]`         | 6 Erkenntnisraum-Seiten (statisch)  |
 | `/buch`                            | „7 Schlüssel des Bewusstseins“      |
+| `/botschaften`                     | Medien (Platzhalter)                |
+| `/toroeffner`                      | Toröffner-Impulse                   |
+| `/ueber-aureon`                    | Über Aureon Thal’Emar               |
 | `/kontakt`                         | Kontakt (E-Mail, Social)            |
 | `/impressum`                       | Impressum (Platzhalter)             |
 | `/datenschutz`                     | Datenschutz (Platzhalter)           |
-| `/erkenntnisraeume/[slug]`         | 6 Erkenntnisraum-Seiten (statisch)  |
 
 Navigation und Buttons scrollen auf der Startseite per Smooth-Scroll zur
 jeweiligen Sektion; von Unterseiten wird zu `/#sektion` zurücknavigiert
@@ -68,41 +72,52 @@ jeweiligen Sektion; von Unterseiten wird zu `/#sektion` zurücknavigiert
 
 ```
 app/
-  layout.tsx                        # Root-Layout, Fonts, Metadaten
-  page.tsx                          # Startseite – setzt alle Sektionen zusammen
-  not-found.tsx                     # Stilvolle 404-Seite
-  globals.css                       # Tailwind + eigene Komponenten-Klassen
-  buch/page.tsx
-  kontakt/page.tsx
-  impressum/page.tsx
-  datenschutz/page.tsx
-  erkenntnisraeume/[slug]/page.tsx  # Dynamische Erkenntnisraum-Seiten
+  layout.tsx                         # Root-Layout, Fonts, Metadaten (aus lib/content/site)
+  page.tsx                           # Startseite – setzt alle Sektionen zusammen
+  not-found.tsx                      # Stilvolle 404-Seite
+  globals.css                        # Tailwind + eigene Komponenten-Klassen
+  buch/ kontakt/ impressum/ datenschutz/
+  botschaften/ toroeffner/ ueber-aureon/
+  erkenntnisraeume/page.tsx          # Übersicht
+  erkenntnisraeume/[slug]/page.tsx   # Dynamische Erkenntnisraum-Seiten
 components/
-  Header.tsx              # Logo, Navigation, CTA, Mobile-Menü
-  Hero.tsx                # Tor-Bogen, Sterne, Titel, CTAs
-  IntroSection.tsx        # „Ein Ort zwischen Stille und Erkenntnis“
-  Erkenntnisraeume.tsx    # 6 Karten → /erkenntnisraeume/[slug]
-  BookSection.tsx         # „7 Schlüssel des Bewusstseins“
-  MediaSection.tsx        # TikTok / YouTube Platzhalter
-  ToroeffnerSection.tsx   # Poetische Impuls-Karten
-  AboutSection.tsx        # Über Aureon Thal’Emar
-  NewsletterSection.tsx   # E-Mail-Anmeldung (Frontend-Demo, mit Validierung)
-  Footer.tsx              # Impressum, Datenschutz, Kontakt, Social
-  PageShell.tsx           # Wiederverwendbares Layout für Unterseiten
-  Starfield.tsx           # Dezentes Sternenfeld (CSS-Animation)
+  layout/
+    Header.tsx           # Logo, Navigation, CTA, Mobile-Menü
+    Footer.tsx           # Entdecken / Seiten / Folgen
+    PageShell.tsx        # Wiederverwendbares Layout für Unterseiten
+  home/
+    HeroSection.tsx        # Tor-Bogen, Sterne, Titel, CTAs
+    IntroSection.tsx       # „Ein Ort zwischen Stille und Erkenntnis“
+    RealmsSection.tsx      # 6 Karten → /erkenntnisraeume/[slug]
+    BookSection.tsx        # „7 Schlüssel des Bewusstseins“
+    MediaSection.tsx       # TikTok / YouTube Platzhalter
+    GateOpenersSection.tsx # Poetische Impuls-Karten (Toröffner)
+    AboutSection.tsx       # Über Aureon Thal’Emar
+    NewsletterSection.tsx  # E-Mail-Anmeldung (Frontend-Demo, mit Validierung)
   ui/
-    Reveal.tsx            # Fade-in beim Scrollen
-    Section.tsx           # Einheitliche Abstände + scroll-mt
-    SectionHeading.tsx    # Wiederverwendbare Sektions-Überschrift
-    SectionLink.tsx       # Smooth-Scroll / cross-page Navigation
+    Button.tsx           # CTA (mappt auf .btn-primary / .btn-ghost)
+    Card.tsx             # Glaskarte (mappt auf .glass / .glass-hover)
+    SectionLabel.tsx     # Goldenes Kapitel-Label (eyebrow)
+    Section.tsx          # Einheitliche Abstände + scroll-mt
+    SectionHeading.tsx   # Wiederverwendbare Sektions-Überschrift
+    SectionLink.tsx      # Smooth-Scroll / cross-page Navigation
+    Reveal.tsx           # Fade-in beim Scrollen
+    Starfield.tsx        # Dezentes Sternenfeld (CSS-Animation)
 lib/
-  content.ts        # Zentrale Platzhalter-Inhalte (v1, kein CMS)
+  content/
+    site.ts          # Markenname, Meta, CTA-Texte, Social/Kontakt (Platzhalter)
+    navigation.ts    # Header-Anker + Footer-Seitenlinks
+    realms.ts        # Erkenntnisräume + getRealm()
+    gateOpeners.ts   # Toröffner-Zitate
+    media.ts         # Medien-Platzhalter
+    index.ts         # Barrel-Export (import { ... } from "@/lib/content")
 ```
 
 ## Hinweise zu v1
 
-- **Keine CMS-Anbindung.** Alle Inhalte liegen als Platzhalter in `lib/content.ts`.
+- **Keine CMS-Anbindung.** Alle Inhalte liegen zentral in `lib/content/`.
 - **Newsletter** und **Medien** sind reine Frontend-Platzhalter ohne Backend.
+- **Platzhalter** (Impressum, Datenschutz, Kontakt, Newsletter, Social) sind im
+  Code mit `TODO`-Kommentaren markiert: „Vor Veröffentlichung … ersetzen."
 - Animationen sind bewusst dezent (Fade-in, Glow, langsame Partikel) und
   respektieren `prefers-reduced-motion`.
-- Social-Links und E-Mail in `lib/content.ts` anpassen, sobald verfügbar.

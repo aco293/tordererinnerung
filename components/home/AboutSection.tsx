@@ -1,5 +1,6 @@
-import Reveal from "./ui/Reveal";
-import Section from "./ui/Section";
+import Reveal from "../ui/Reveal";
+import Section from "../ui/Section";
+import SectionLabel from "../ui/SectionLabel";
 
 export default function AboutSection() {
   return (
@@ -33,7 +34,7 @@ export default function AboutSection() {
           {/* Text */}
           <div>
             <Reveal>
-              <span className="eyebrow">Über</span>
+              <SectionLabel>Über</SectionLabel>
             </Reveal>
             <Reveal delay={100}>
               <h2 className="mt-4 text-balance text-4xl leading-tight sm:text-5xl">

@@ -1,25 +1,25 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import IntroSection from "@/components/IntroSection";
-import Erkenntnisraeume from "@/components/Erkenntnisraeume";
-import BookSection from "@/components/BookSection";
-import MediaSection from "@/components/MediaSection";
-import ToroeffnerSection from "@/components/ToroeffnerSection";
-import AboutSection from "@/components/AboutSection";
-import NewsletterSection from "@/components/NewsletterSection";
-import Footer from "@/components/Footer";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import HeroSection from "@/components/home/HeroSection";
+import IntroSection from "@/components/home/IntroSection";
+import RealmsSection from "@/components/home/RealmsSection";
+import BookSection from "@/components/home/BookSection";
+import MediaSection from "@/components/home/MediaSection";
+import GateOpenersSection from "@/components/home/GateOpenersSection";
+import AboutSection from "@/components/home/AboutSection";
+import NewsletterSection from "@/components/home/NewsletterSection";
 
 export default function Home() {
   return (
     <>
       <Header />
       <main>
-        <Hero />
+        <HeroSection />
         <IntroSection />
-        <Erkenntnisraeume />
+        <RealmsSection />
         <BookSection />
         <MediaSection />
-        <ToroeffnerSection />
+        <GateOpenersSection />
         <AboutSection />
         <NewsletterSection />
       </main>

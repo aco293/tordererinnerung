@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import SectionLabel from "./SectionLabel";
 
 type SectionHeadingProps = {
   eyebrow?: string;
@@ -18,7 +19,7 @@ export default function SectionHeading({
 
   return (
     <Reveal className={`flex max-w-2xl flex-col gap-5 ${alignment}`}>
-      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+      {eyebrow && <SectionLabel>{eyebrow}</SectionLabel>}
       <h2 className="text-balance text-3xl leading-tight sm:text-4xl md:text-5xl">
         {title}
       </h2>

@@ -1,7 +1,8 @@
 import { mediaItems } from "@/lib/content";
-import SectionHeading from "./ui/SectionHeading";
-import Section from "./ui/Section";
-import Reveal from "./ui/Reveal";
+import SectionHeading from "../ui/SectionHeading";
+import Section from "../ui/Section";
+import Card from "../ui/Card";
+import Reveal from "../ui/Reveal";
 
 export default function MediaSection() {
   return (
@@ -16,9 +17,11 @@ export default function MediaSection() {
         <div className="mt-14 grid gap-5 sm:gap-6 md:grid-cols-3">
           {mediaItems.map((item, i) => (
             <Reveal key={item.title} delay={i * 100} className="h-full">
-              <a
+              <Card
+                as="a"
                 href={item.href}
-                className="glass glass-hover group flex h-full flex-col overflow-hidden rounded-2xl"
+                interactive
+                className="group flex h-full flex-col overflow-hidden rounded-2xl"
               >
                 {/* Vorschau-Platzhalter (16:9) */}
                 <div className="relative flex aspect-video items-center justify-center overflow-hidden bg-gradient-to-br from-violet/45 via-dark-blue to-background">
@@ -53,7 +56,7 @@ export default function MediaSection() {
                     Bald verfügbar
                   </span>
                 </div>
-              </a>
+              </Card>
             </Reveal>
           ))}
         </div>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import { siteConfig } from "@/lib/content";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -16,23 +17,28 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "TorDerErinnerung – Ein Raum für Bewusstsein und innere Klarheit",
-  description:
-    "TorDerErinnerung ist ein digitaler Raum für Menschen, die tiefer fühlen, bewusster sehen und sich wieder mit ihrer inneren Wahrheit verbinden möchten.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} – Ein Raum für Bewusstsein und innere Klarheit`,
+    template: `%s – ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
   keywords: [
     "Bewusstsein",
     "Spiritualität",
     "innere Klarheit",
     "Erinnerung",
     "Frequenz",
-    "Aureon Thal'Emar",
+    siteConfig.author,
   ],
   openGraph: {
-    title: "TorDerErinnerung",
-    description:
-      "Ein Raum für Bewusstsein, innere Klarheit und die Rückkehr zu dem, was in dir nie verloren ging.",
+    title: siteConfig.name,
+    description: siteConfig.tagline,
+    siteName: siteConfig.name,
     type: "website",
-    locale: "de_DE",
+    locale: siteConfig.locale,
+    url: siteConfig.url,
   },
 };
 
