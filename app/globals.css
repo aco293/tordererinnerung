@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-body text-muted antialiased;
+    background-image:
+      radial-gradient(circle at 50% -10%, rgba(43, 33, 74, 0.55), transparent 55%),
+      radial-gradient(circle at 85% 20%, rgba(43, 33, 74, 0.25), transparent 40%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(214, 183, 106, 0.25);
+    color: #f5f0e8;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading text-soft-white;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  /* Klare, einheitliche Focus-States (Tastatur-Navigation) */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid rgba(214, 183, 106, 0.65);
+    outline-offset: 3px;
+    border-radius: 0.25rem;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-10;
+  }
+
+  /* Dezenter Lichtschein – bewusst weich, ohne die Lesbarkeit zu mindern */
+  .text-glow {
+    text-shadow: 0 0 32px rgba(214, 183, 106, 0.28);
+  }
+
+  .gold-divider {
+    @apply h-px w-full bg-gold-line opacity-60;
+  }
+
+  /* Premium glass card */
+  .glass {
+    background: linear-gradient(
+      160deg,
+      rgba(20, 26, 48, 0.7),
+      rgba(11, 16, 32, 0.55)
+    );
+    border: 1px solid rgba(214, 183, 106, 0.12);
+    backdrop-filter: blur(10px);
+  }
+
+  .glass-hover {
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.5s ease,
+      box-shadow 0.5s ease;
+  }
+
+  .glass-hover:hover {
+    transform: translateY(-3px);
+    border-color: rgba(214, 183, 106, 0.38);
+    box-shadow: 0 26px 60px -42px rgba(214, 183, 106, 0.38);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glass-hover:hover {
+      transform: none;
+    }
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-all duration-500 ease-out;
+  }
+
+  .btn-primary {
+    @apply btn text-background;
+    background: linear-gradient(135deg, #e7cf92, #d6b76a 60%, #b9974f);
+    box-shadow: 0 10px 40px -12px rgba(214, 183, 106, 0.6);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 14px 50px -10px rgba(214, 183, 106, 0.8);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    @apply btn text-soft-white;
+    border: 1px solid rgba(214, 183, 106, 0.35);
+    background: rgba(214, 183, 106, 0.04);
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(214, 183, 106, 0.7);
+    background: rgba(214, 183, 106, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.25em] text-gold/80 sm:tracking-[0.35em];
+  }
+
+  .footer-link {
+    @apply text-sm text-muted transition-colors duration-300 hover:text-soft-white;
+  }
+}
+
+@layer utilities {
+  /* Reveal-on-scroll initial + visible states */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
