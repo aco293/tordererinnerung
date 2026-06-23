@@ -11,10 +11,10 @@ export default function Footer() {
           {/* Marke */}
           <div className="max-w-xs text-center md:text-left">
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gold/40 text-gold">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/40 text-gold">
                 ⟡
               </span>
-              <span className="font-heading text-lg text-soft-white">
+              <span className="whitespace-nowrap font-heading text-lg text-soft-white">
                 Tor<span className="text-gold">Der</span>Erinnerung
               </span>
             </Link>

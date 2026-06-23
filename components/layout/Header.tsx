@@ -34,17 +34,20 @@ export default function Header() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav className="container-x flex h-[4.5rem] items-center justify-between">
+      <nav
+        aria-label="Hauptnavigation"
+        className="container-x flex h-[4.5rem] items-center justify-between"
+      >
         {/* Logo */}
         <Link
           href="/"
           className="group flex items-center gap-2.5"
           aria-label="TorDerErinnerung – zur Startseite"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gold/40 text-gold transition-colors duration-500 group-hover:border-gold/80">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/40 text-gold transition-colors duration-500 group-hover:border-gold/80">
             <span className="text-base leading-none">⟡</span>
           </span>
-          <span className="font-heading text-lg tracking-wide text-soft-white sm:text-xl">
+          <span className="whitespace-nowrap font-heading text-base tracking-tight text-soft-white sm:text-xl sm:tracking-wide">
             Tor<span className="text-gold">Der</span>Erinnerung
           </span>
         </Link>
@@ -72,6 +75,7 @@ export default function Header() {
           className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/20 text-soft-white lg:hidden"
           aria-label={open ? "Menü schließen" : "Menü öffnen"}
           aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           <span className="flex flex-col gap-1.5">
             <span
@@ -93,13 +97,19 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile-Menü */}
+      {/* Mobile-Menü – im geschlossenen Zustand per visibility aus dem
+          Accessibility-Tree und Tab-Fokus genommen (keine doppelte Navigation). */}
       <div
+        id="mobile-menu"
+        aria-hidden={!open}
         className={`overflow-hidden border-t border-gold/10 bg-background/95 backdrop-blur-md transition-all duration-500 lg:hidden ${
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          open ? "visible max-h-96 opacity-100" : "invisible max-h-0 opacity-0"
         }`}
       >
-        <div className="container-x flex flex-col gap-1 py-5">
+        <nav
+          aria-label="Mobile Navigation"
+          className="container-x flex flex-col gap-1 py-5"
+        >
           {navLinks.map((link) => (
             <SectionLink
               key={link.section}
@@ -117,7 +127,7 @@ export default function Header() {
           >
             Das Tor betreten
           </SectionLink>
-        </div>
+        </nav>
       </div>
     </header>
   );
